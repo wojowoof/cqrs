@@ -37,3 +37,20 @@ func TestValidStrings(t *testing.T) {
 		}
 	}
 }
+
+func TestInitFromString(t *testing.T) {
+	for idx, c := range OKColorNames {
+		gc := FromString(c)
+		if gc != OKColors[idx] {
+			t.Errorf("Invalid conversion from string \"%s\" to color %d (got %d)",
+				c, OKColors[idx], gc)
+		}
+	}
+	for _, c := range [...]string{"Blue", "", "INVALID"} {
+		gc := FromString(c)
+		if gc.IsValid() {
+			t.Errorf("Invalid conversion from invalid string \"%s\" to valid color %v (%d)",
+				c, gc, gc)
+		}
+	}
+}

@@ -2,6 +2,8 @@ package board
 
 import (
 	"fmt"
+	"strings"
+	"wojones.com/src/gamecolor"
 )
 
 type posn struct {
@@ -14,10 +16,22 @@ type Board struct {
 	ID      string
 	Columns int
 	Rows    int
+	Color0  gamecolor.GColor
+	Color1  gamecolor.GColor
 }
 
 func (b Board) String() string {
 	return fmt.Sprintf("Board %s (%dx%d)", b.ID, b.Columns, b.Rows)
+}
+
+// Dump returns an ASCII-style string representation of a board
+func (b Board) Dump() string {
+	s := "+" + strings.Repeat("-+", b.Columns) + "\n"
+	for i := 0; i < b.Rows; i++ {
+		s += "|" + strings.Repeat(" |", b.Columns) + "\n"
+		s += "+" + strings.Repeat("-+", b.Columns) + "\n"
+	}
+	return s
 }
 
 // Squares resturns the number of squares on a board

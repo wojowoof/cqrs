@@ -15,10 +15,10 @@ type Cqrpiece struct {
 }
 
 func (c *Cqrpiece) String() string {
-	return fmt.Sprintf("%s (%s) @%d/%d)", c.Name, c.Color, c.Xp, c.Yp)
+	return fmt.Sprintf("%s (%s) @%d/%d", c.Name, c.Color, c.Xp, c.Yp)
 }
 
 // NewPiece creates a new Cqrpiece
-func NewPiece(id string) *Cqrpiece {
-	return &Cqrpiece{Name: id, Xp: 0, Yp: 0}
+func NewPiece(id string, color gamecolor.GColor) *Cqrpiece {
+	return &Cqrpiece{Name: id, Color: color, Xp: 0, Yp: 0}
 }

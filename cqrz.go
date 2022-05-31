@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
-	// board "wojones.com/src/board"
+	"wojones.com/src/board"
 	"wojones.com/src/cqrpiece"
 )
 
@@ -23,9 +23,11 @@ func main() {
 		return ""
 	}())
 
-	//nb := board.newBoard(8, 8)
-	np := cqrpiece.newPiece("Black0")
-	fmt.Printf("Piece: %v", np)
+	np := cqrpiece.NewPiece("Black0")
+	fmt.Printf("Piece: %v\n", np)
+
+	cboard := board.NewBoard("321", 8, 10)
+	fmt.Printf("Board: %v has %v squares\n", cboard, cboard.Squares())
 }
 
 func init() {

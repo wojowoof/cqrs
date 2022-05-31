@@ -6,6 +6,7 @@ import (
 	"os"
 	"path/filepath"
 	"wojones.com/src/board"
+	"wojones.com/src/cqrgame"
 	"wojones.com/src/cqrpiece"
 )
 
@@ -28,6 +29,9 @@ func main() {
 
 	cboard := board.NewBoard("321", 8, 10)
 	fmt.Printf("Board: %v has %v squares\n", cboard, cboard.Squares())
+
+	gamep := &cqrgame.Cqrgame{ID: "game1"}
+	fmt.Printf("New game: %v\n", gamep)
 }
 
 func init() {

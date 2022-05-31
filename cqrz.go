@@ -8,6 +8,7 @@ import (
 	"wojones.com/src/board"
 	"wojones.com/src/cqrgame"
 	"wojones.com/src/cqrpiece"
+	"wojones.com/src/gamecolor"
 )
 
 var (
@@ -24,11 +25,14 @@ func main() {
 		return ""
 	}())
 
-	np := cqrpiece.NewPiece("Black0")
+	np := cqrpiece.NewPiece("Black0", gamecolor.Black)
 	fmt.Printf("Piece: %v\n", np)
 
-	cboard := board.NewBoard("321", 8, 10)
+	//cboard := board.NewBoard("321", 8, 10)
+	cboard := board.Board{ID: "CqrBoard", Columns: 6, Rows: 4}
 	fmt.Printf("Board: %v has %v squares\n", cboard, cboard.Squares())
+	fmt.Printf("Board:\n")
+	fmt.Printf("%s\n", cboard.Dump())
 
 	gamep := &cqrgame.Cqrgame{ID: "game1"}
 	fmt.Printf("New game: %v\n", gamep)

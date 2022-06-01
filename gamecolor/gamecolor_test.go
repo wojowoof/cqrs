@@ -5,9 +5,12 @@ import (
 	"testing"
 )
 
-var OKColors = []GColor{Black, White}
-var OKColorNames = []string{"Black", "White"}
-var BADColors = []GColor{Black - 1, White + 1, 99999}
+// TODO: These should be derived from []smap so that extending it
+// automatically extends the tests properly
+var OKColors = []GColor{Black, White, Red, Green}
+var OKColorNames = []string{"Black", "White", "Red", "Green"}
+
+var BADColors = []GColor{Black - 1, Green + 1, 99999}
 
 func TestValidColors(t *testing.T) {
 	for _, c := range OKColors {
@@ -23,10 +26,10 @@ func TestValidColors(t *testing.T) {
 }
 
 func TestValidStrings(t *testing.T) {
-	for idx, c := range OKColors {
-		cstring := c.String()
-		if cstring != OKColorNames[idx] {
-			t.Errorf("Incorrect name for color %v (%d): %s", c, c, cstring)
+	for key, color := range smap {
+		cstring := color.String()
+		if cstring != key {
+			t.Errorf("Incorrect name for color %v (%d): %s", color, color, cstring)
 		}
 	}
 	for _, c := range BADColors {
@@ -46,7 +49,7 @@ func TestInitFromString(t *testing.T) {
 				c, OKColors[idx], gc)
 		}
 	}
-	for _, c := range [...]string{"Blue", "", "INVALID"} {
+	for _, c := range [...]string{"Blueplatz", "", "INVALID"} {
 		gc := FromString(c)
 		if gc.IsValid() {
 			t.Errorf("Invalid conversion from invalid string \"%s\" to valid color %v (%d)",

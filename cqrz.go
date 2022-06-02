@@ -34,8 +34,12 @@ func main() {
 	fmt.Printf("Board:\n")
 	fmt.Printf("%s\n", cboard.Dump())
 
-	gamep := &cqrgame.Cqrgame{ID: "game1"}
+	gamep := &cqrgame.Cqrgame{ID: "game1", Player0: "Foo", Player1: "Bar"}
 	fmt.Printf("New game: %v\n", gamep)
+}
+
+func initBoard(b board.Board) bool {
+	return true
 }
 
 func init() {
